@@ -1,0 +1,499 @@
+/* ================================ */
+/* imports and varibles================= */
+/* ================================ */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap');
+:root {
+  --bg-gray:#F0F1F3;
+  --text-light-gray: #919191;
+  --text-gray: #808080;
+  --green:#1dd3b0
+}
+/* ================================ */
+/* Globals========================== */
+/* ================================ */
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+textarea:focus, input:focus{
+  outline: none;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+html{
+    background-color: var(--bg-gray);
+}
+
+Link,a,button,li{
+  text-decoration: none;
+  color: inherit;
+  list-style: none;
+  background-color: inherit;
+  border: none;
+  font-size: inherit;
+}
+a,button,Link{
+  cursor: pointer;
+}
+.button{
+  display:inline-block;
+  background-color: var(--green);
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 5px 10px;
+  box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
+  font-weight: 700;
+  margin:  auto 10px;
+}
+/* ================================ */
+/* Homepage========================== */
+/* ================================ */
+.HomePage{
+  width: 70%;
+  margin: 30px auto;
+}
+.HomeFlex{
+  display: flex;
+}
+@media screen and (max-width: 780px) {
+  .HomeFlex{
+    flex-direction: column;
+  }
+}
+
+
+/* ================================ */
+/* navbar========================== */
+/* ================================ */
+.navbar{
+  z-index: 100;
+  position: sticky;
+  top: 0px;
+  height: 60px;
+  color: var(--text-light-gray);
+  display: flex;
+  background-color: #ffffff;
+  transition: 0.4s;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+}
+.navbar li{
+  margin: auto 0px;
+}
+.navActive{
+  color: var(--text-gray);
+  font-weight: 600;
+}
+.navlogo{
+  margin:10px 10px;
+  display: inline-block;
+}
+.navLogoText{
+  font-family: 'Lobster', cursive;
+  font-size: 30px;
+  color: var(--green);
+  font-weight: 700;
+}
+.navContent{
+  flex: 10;
+  display: flex;
+  justify-content: space-between;
+}
+.navlinks{
+  font-size: 17px;
+  margin: auto 15px;
+}
+.navUser{
+  margin: auto 15px;
+  font-size: 12px;
+}
+.navLeft{
+  display: flex;
+}
+.navRight{
+  display: flex;
+}
+.menuBar{
+  display: none;
+  color: var(--green);
+  font-size: 22px;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2147483647;
+}
+#menu{
+  display: none;
+}
+@media screen and (max-width: 780px) {
+  .navbar li{
+      margin: 10px 2px;
+  }
+  .navbar{
+      overflow: hidden;
+  }
+  .menuBar{
+      display: block;
+      
+  }
+  .navbar{
+      display: block;
+  }
+  .navContent{
+      display: block;
+  }
+  .navLeft{
+      display: block;
+  }
+  .navRight{
+      display: block;
+  }
+  .button{
+      margin-bottom:10px ;
+  }
+  #menu:checked ~ .navbar{
+      height: 225px;
+  }
+}
+
+/* ================================ */
+/* Posts========================== */
+/* ================================ */
+.Posts{
+  flex: 7;
+  margin: 5px 10px;
+}
+/* ================================ */
+/* addpost========================== */
+/* ================================ */
+  .addPostForm{
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
+    color: var(--text-gray);
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 5px;
+    margin-bottom: 40px;
+  }
+  .addPostForm h3{
+    margin: 5px 0px ;
+  }
+  .addPostForm h3 span{
+    color: var(--green);
+  }
+  .addPostForm textarea{
+    color: var(--text-gray);
+    border-radius: 20px;
+    padding: 20px;
+    width:100%;
+    resize: none;
+    font-size: 16px;
+    background-color: var(--bg-gray);
+    border: none;
+    overflow: auto;
+    height: 100%;
+    margin-bottom: 10px;
+  }
+/* ================================ */
+/* PostCard========================== */
+/* ================================ */
+.PostCard{
+  box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
+  color: var(--text-gray);
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 15px 5px;
+}
+.pcardTop{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--text-gray);
+}
+.pcardUser{
+  font-size: 18px;
+}
+.pcardDate{
+  margin: auto 5px;
+  font-size: 10px;
+  color: var(--text-light-gray);
+}
+.pcardStatus{
+  border-bottom: 1px solid var(--text-gray);
+  padding: 5px 0px;
+
+}
+.pcardBottom{
+  padding-top:5px ;
+  display: flex;
+}
+.likes{
+  margin: 4px 0px;
+  margin-right: 50px;
+  display: flex;
+  cursor: pointer;
+}
+.likeActive{
+  color: var(--green);
+}
+.likeIcon{
+  margin-right: 5px;
+}
+.likeCount{
+  margin: auto 0px;
+}
+.comments{
+  margin: 4px 0px;
+  display: flex;
+  cursor: pointer;
+}
+.commentIcon{
+  margin-right: 5px;
+}
+.commentCount{
+  margin: auto 0px;
+}
+.commentBox{
+  border-top:1px solid var(--text-gray);
+  margin-top: 5px;
+  height: 0;
+  overflow: hidden;
+  transition: 1s;
+}
+.commentCard{
+  border-radius: 10px;
+  padding: 5px;
+  background-color: var(--bg-gray);
+  margin: 5px 0px;
+}
+.commentHeight{
+
+  height: auto;
+}
+
+.comment{
+  color: var(--text-light-gray);
+  font-size: 14px;
+}
+.commentAdd{
+  width: 100%;
+}
+.commentAdd input{
+  width: 85%;
+  color: var(--text-gray);
+  background-color: var(--bg-gray);
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.commentAdd button{
+  font-size: 14px;
+}
+
+
+/* ================================ */
+/* Sidebar========================== */
+/* ================================ */
+.Sidebar{
+  box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
+  position: sticky;
+  top: 100px;
+  flex: 3;
+  background-color: #ffffff;
+  padding: 15px;
+  margin: 10px;
+  height: 80vh;
+  overflow: auto;
+  border-radius: 15px;
+  color: var(--text-gray);
+}
+.sidebarText{
+  margin: 5px 0px;
+}
+.sidebarBio{
+  padding: 10px;
+  background-color: var(--bg-gray);
+  border-radius: 10px;
+}
+  /* ================================ */
+  /* Profile========================== */
+  /* ================================ */
+  .Profileleft{
+    color: var(--text-gray);
+    flex: 7;
+    margin: 5px 10px;
+    display: block;
+    width: 100%;
+  } 
+  .profileCard
+  {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 5px;
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
+
+    
+  }
+  .profileDetail{
+    width: 100%;
+  }
+  .profileDetail th{
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+  }
+  .profileDetail td{
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+  }
+  .profileButton{
+    font-size: 14px;
+    margin-left: 20px;
+  }
+  /* ================================ */
+  .profileDetail td textarea{
+    resize: none;
+    color: var(--text-gray);
+    border: none;
+    width: 100%;  
+
+  }
+  .Users{
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
+  }
+  .Users h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .userCardContents{
+    width: 100%;
+  }
+  .UserCard{
+    background-color: var(--bg-gray);
+    padding: 5px 10px;
+  }
+  .UserCard td{
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  .tableUserName{
+    width: 100%;
+    text-align: center;
+  }
+  .tableHead{
+    width: 100%;
+    background-color: var(--text-gray);
+    padding: 10px 0px;
+    border-radius: 5px;
+    color: white;
+  }
+  @media screen and (max-width: 680px) {
+    th,tr,td,.tableHead,.tableUserName{
+      width: 50%;
+      font-size: 12px;
+      margin: 0px;
+      padding: 0px;
+    }
+  }
+  /* ================================ */
+  /*user========================== */
+  /* ================================ */
+  .userSearch{
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
+  }
+  .searchContainer{
+    background-color: var(--bg-gray);
+    padding: 10px;
+    border-radius: 15px;
+  }
+  .searchContainer input{
+    background-color: inherit;
+    border: none;
+    margin-left: 10px;
+    font-size: 16px;
+    padding-left: 10px;
+    border-left: 2px solid var(--text-gray);
+
+  }
+
+    /* ================================ */
+  /*login========================== */
+  /* ================================ */
+  .Login{
+    color: var(--text-gray);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .loginForm{
+    margin-top: -200px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .loginForm h1{
+    font-family: 'Lobster', cursive;
+    color: var(--green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+  }
+  .loginForm input{
+    font-size: 18px;
+    padding: 5px;
+    margin: 20px 2px;
+    width: 350px;
+    color: var(--text-gray);
+    border: none;
+    border-bottom: 2px solid var(--text-gray);
+  }
+  .LoginSmall{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    text-decoration: underline;
+
+  }
+
+  .displayNone{
+    display: none;
+  }
+  
