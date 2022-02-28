@@ -1,17 +1,21 @@
-import { PostContext } from "../context/PostContext";
-import React,{useState, useContext, useEffect} from "react";
-import {v4} from "uuid"
+
+import React,{useState} from "react";
+
 import AddPost from './AddPost'
 import PostCard from "./PostCard"
 
 export default function Posts(props) {
-  let {posts}=props
+  const [status, setStatus]=useState({})
+  const {posts}=props;
+  const postArr=posts.posts
   
   return (
     <div className="Posts">
-      <AddPost />
+      <AddPost setStatus={setStatus} status={status} />
       <div className="postList">
-        {posts.length===0?<h2>no posts to show</h2>:posts.map((post)=><PostCard key={v4()} post={post}/>) }
+    {postArr.length>0?postArr.map((post)=>{
+      return <PostCard post={post} key={post._id} setStatus={setStatus} />
+    }):"No post to show"}
         
       </div>
     </div>

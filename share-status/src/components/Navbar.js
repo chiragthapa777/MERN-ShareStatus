@@ -1,18 +1,18 @@
-import React,{useContext} from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext';
-import { UserContext } from '../context/UserContext';
+import { authLogout } from '../redux-store/actions/authAction';
 
-export default function Navbar() {
-  const {userDetail}=useContext(UserContext)
-  
-  const navigate=useNavigate()
-  const{logout}= useContext(AuthContext)
-  const handleLogout=()=>{
-    logout()
-    navigate("/login")
-}
+
+
+export default function Navbar() { 
+  const dispatch=useDispatch()
+  let navigate=useNavigate()
   let location = useLocation();
+  const handleLogout=()=>{
+    dispatch(authLogout())
+    navigate("/login")
+  }
   return (
     <>
       <label htmlFor="menu">
@@ -53,7 +53,7 @@ export default function Navbar() {
           </div>
           <div className="navRight">
             <li>
-              <p className="navUser">Logged in as {userDetail.name}</p>
+              <p className="navUser">Logged in as chirag</p>
             </li>
             <li>
               <a className="button" onClick={handleLogout}>

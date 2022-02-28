@@ -1,19 +1,21 @@
-import React,{useContext} from 'react'
+import React from 'react'
 import Homepage from './pages/Homepage';
 import ProfilePage from './pages/ProfilePage';
 import Userpage from './pages/Userpage';
 import Login from './components/Login';
 import Register from './components/Register';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthContext } from './context/AuthContext';
 import VisitProfile from './pages/VisitProfile';
+import {ToastContainer} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 
 export default function App() {
-  const{user}=useContext(AuthContext)
+  const user=true
   return (
     <div>
       <BrowserRouter>
+      <ToastContainer />
           <Routes>
             {
               user && (

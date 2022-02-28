@@ -114,7 +114,35 @@ router.get("/getfollowpost", authenticate, async (req, res) => {
 // =============================================================================
 //likes and comment=============================================
 // =============================================================================
-router.put(
+// router.put(
+//     "/like/:id",
+//     authenticate,
+//     async (req, res) => {
+//       try {
+//         //checking the Post's user
+//         let post = await Post.findOne({ _id:req.params.id });
+//         if (!post) return res.status(401).json({ error: "Cannot find the Post" });
+//         // console.log(Post.user, req.user.id);
+//         if(post.likes.includes(req.user.id))
+//         {
+//             //unlike
+//             let newlikes=post.likes.filter((item)=>item!==req.user.id)
+//             post = await Post.findByIdAndUpdate(req.params.id, {likes:[...newlikes]}, {new: true})
+//         }
+//         else{
+//             //like
+//             post = await Post.findByIdAndUpdate(req.params.id, {likes:[...post.likes,req.user.id]}, {new: true})
+//         }
+//         //updating the Post
+//         res.status(200).json({ message: "Post is successfully updated", post });
+//       } catch (error) {
+//         res.status(500).json({ error: error });
+//         console.log(error);
+        
+//       }
+//     }
+//   );
+router.patch(
     "/like/:id",
     authenticate,
     async (req, res) => {
@@ -127,7 +155,7 @@ router.put(
         {
             //unlike
             let newlikes=post.likes.filter((item)=>item!==req.user.id)
-            post = await Post.findByIdAndUpdate(req.params.id, {likes:[...newlikes]}, {new: true})
+            post = await Post.findByIdAndUpdate(req.params.id, {likes:newlikes}, {new: true})
         }
         else{
             //like

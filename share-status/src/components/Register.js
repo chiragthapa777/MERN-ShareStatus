@@ -1,33 +1,33 @@
-import React,{useContext, useState} from 'react'
+import React,{useEffect, useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext'
-import { UserContext } from '../context/UserContext'
+import { authRegister } from '../redux-store/actions/authAction'
+
+
+
 
 
 
 export default function Register() {
   const navigate=useNavigate()
-  const {register}=useContext(AuthContext)
-  const {getUserDetail}=useContext(UserContext)
+  const dispatch=useDispatch()
+  const auth=useSelector(state=>state.auth)
   const [email, setEmail] = useState("")
   const [pw, setPw] = useState("")
   const [name, setName] = useState("")
-  const handleRegister=async(e)=>{
+
+  const handleSubmit=e=>{
     e.preventDefault()
-    const json= await register(name, email, pw)
-    if(json.error)
-    {
-      alert(json.error)
-    }
-    else{
-      alert(json.message)
-      getUserDetail()
-      navigate("/")
-    }
+    dispatch(authRegister({name,email,password:pw}))
   }
+  useEffect(() => {
+    if(auth.id!==null) navigate("/profile")
+  }, [auth])
+  
+
   return (
     <div className="Login">
-      <form action="" className='loginForm' onSubmit={handleRegister}>
+      <form action="" className='loginForm' onSubmit={handleSubmit}>
         <h1>ShareStatus.</h1>
         <input type="text" placeholder='Enter name' value={name} onChange={e=>{setName(e.target.value)}}/>
         <input type="email" placeholder='Enter email' value={email} onChange={e=>{setEmail(e.target.value)}}/>

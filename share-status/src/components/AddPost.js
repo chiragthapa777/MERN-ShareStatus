@@ -1,43 +1,37 @@
-import React,{useState, useContext, useEffect} from 'react'
-import { PostContext } from '../context/PostContext'
-import { UserContext } from '../context/UserContext'
+import React from "react";
+import {useDispatch} from "react-redux"
+import { addPost } from "../redux-store/actions/postActions";
+import { updatePost } from "../redux-store/actions/postActions";
 
-export default function AddPost() {
-  const {userDetail} = useContext(UserContext)
-  const {addPost,updatePost, editContent} = useContext(PostContext)
-  const [status, setStatus] = useState("")
-  useEffect(() => {
-    if(editContent.length!==0)
-    {
-      setStatus(editContent[0].status)
-    }
-  }, [editContent])
-  
-  
-  const handleAddPost=(e)=>{
+export default function AddPost({ status, setStatus }) {
+  const dispatch=useDispatch()
+  const handlePost=e=>{
     e.preventDefault()
-    if(editContent.length!==0)
-    {
-      updatePost({
-        status
-      })
-
+    if(status._id){
+      dispatch(updatePost(status.status, status._id))
     }
     else{
-    addPost({
-      status
-    })
-  }
-  setStatus("") 
+
+      dispatch(addPost(status))
+    }
+    setStatus({status:""})
   }
   return (
-    <div className="Addpost" onSubmit={handleAddPost}>
-      <form action="" className='addPostForm'>
-
-        <h3><span>{userDetail.name}</span>, update your status</h3>
-        <textarea  value={status} rows="3" onChange={(e)=>{setStatus(e.target.value)}} placeholder="Write something....."></textarea>
-        <button type='submit' className='button'>{editContent.length!==0?"Update":"Post"}</button>
+    <div className="Addpost">
+      <form action="" className="addPostForm">
+        <h3>
+          <span>Chirag</span>, update your status
+        </h3>
+        <textarea
+          rows="3"
+          value={status.status}
+          onChange={(e) => setStatus({...status, status:e.target.value})}
+          placeholder="Write something....."
+        ></textarea>
+        <button type="submit" className="button" onClick={handlePost}>
+          {status._id?"Edit":"Post"}
+        </button>
       </form>
     </div>
-  )
+  );
 }

@@ -78,6 +78,16 @@ a,button,Link{
     flex-direction: column;
   }
 }
+@media screen and (max-width: 1080px) {
+  .HomePage{
+    width: 90%;
+  }
+}
+@media screen and (max-width: 580px) {
+  .HomePage{
+    width: 97%;
+  }
+}
 
 
 /* ================================ */
@@ -248,7 +258,7 @@ a,button,Link{
   padding-top:5px ;
   display: flex;
 }
-.likes{
+.likes,.comments{
   margin: 4px 0px;
   margin-right: 50px;
   display: flex;
@@ -257,61 +267,54 @@ a,button,Link{
 .likeActive{
   color: var(--green);
 }
-.likeIcon{
+.likeIcon, .commentIcon {
+  margin: auto 0px;
   margin-right: 5px;
 }
 .likeCount{
   margin: auto 0px;
 }
-.comments{
-  margin: 4px 0px;
-  display: flex;
-  cursor: pointer;
-}
-.commentIcon{
-  margin-right: 5px;
-}
-.commentCount{
-  margin: auto 0px;
-}
-.commentBox{
-  border-top:1px solid var(--text-gray);
-  margin-top: 5px;
-  height: 0;
-  overflow: hidden;
-  transition: 1s;
-}
-.commentCard{
-  border-radius: 10px;
-  padding: 5px;
-  background-color: var(--bg-gray);
-  margin: 5px 0px;
-}
-.commentHeight{
-
+.commentSection{
+  margin: 3px;
+  border-top: 1px solid var(--text-gray);
+  padding: 5px 0px;
   height: auto;
+  transition: 0.5s;
 }
-
-.comment{
-  color: var(--text-light-gray);
-  font-size: 14px;
+.commentList{
+  margin: 5px;
 }
-.commentAdd{
-  width: 100%;
-}
-.commentAdd input{
-  width: 85%;
-  color: var(--text-gray);
+.commentDisplay{
   background-color: var(--bg-gray);
   padding: 5px;
-  border: none;
+  margin: 5px 0px;
   border-radius: 10px;
-  font-size: 16px;
+  display: flex;
 }
-.commentAdd button{
-  font-size: 14px;
+.commenterName{
+  border-right: 1px solid var(--text-gray);
+  margin: auto 0px;
+  padding-right: 10px;
+  color: var(--green);
 }
 
+.commentText{
+  padding-left: 10px;
+}
+.commentPost{
+  display: flex;
+}
+.commentInput{
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--bg-gray);
+  padding: 3px 8px;
+}
+.hideComment{
+  height: 0px;
+  overflow: hidden;
+}
 
 /* ================================ */
 /* Sidebar========================== */

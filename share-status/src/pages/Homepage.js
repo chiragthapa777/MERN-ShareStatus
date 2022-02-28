@@ -1,22 +1,17 @@
-import React,{useContext, useEffect} from 'react'
+import React from 'react'
 import Navbar from '../components/Navbar'
 import Posts from '../components/Posts'
 import Sidebar from '../components/Sidebar'
-import { PostContext } from '../context/PostContext'
-
+import { posts } from '../json'
 
 
 export default function Homepage() {
-  const {homePosts, getHomePosts} = useContext(PostContext)
-  useEffect(()=>{
-    getHomePosts()
-  },[])
   return (
     <>
     <Navbar />
     <div className="HomePage">
         <div className="HomeFlex">
-          <Posts posts={homePosts}/>
+          <Posts posts={posts}/>
             <Sidebar />
         </div>
     </div>

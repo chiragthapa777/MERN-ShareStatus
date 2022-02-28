@@ -1,32 +1,29 @@
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext'
-import { UserContext } from '../context/UserContext'
+import { authLogin } from '../redux-store/actions/authAction'
+
 
 export default function Login() {
+  const dispatch=useDispatch()
   const navigate=useNavigate()
-  const { login } = useContext(AuthContext)  
-  const { getUserDetail } = useContext(UserContext)  
+  const auth=useSelector(state=>state.auth)
   const [email, setEmail] = useState("")
   const [pw, setPw] = useState("")
-  const handleLogin=async (e)=>{
+  const handleSubmit=e=>{
     e.preventDefault()
-    const json= await login(email, pw)
-    if(json.error)
-    {
-      // alert(json.error)
-      console.log(json.error);
-      
-    }
-    else{
-      // alert(json.message)
-      getUserDetail()
-      navigate("/")
-    }
+    dispatch(authLogin({email,password:pw}))
   }
+  console.log(auth);
+  useEffect(() => {
+    if(auth.id!==null) navigate("/profile")
+  }, [auth])
+  
+
+  
   return (
-    <div className="Login">
-      <form action="" className='loginForm' onSubmit={handleLogin}>
+    <div className="Login" >
+      <form action="" className='loginForm' onSubmit={handleSubmit}>
         <h1>ShareStatus.</h1>
         <input type="email" placeholder='Enter email' value={email} onChange={e=>{setEmail(e.target.value)}} />
         <input type="password" placeholder='Enter password' value={pw} onChange={e=>{setPw(e.target.value)}}/ >
