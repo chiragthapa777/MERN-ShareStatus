@@ -1,4 +1,4 @@
-import { url } from "../../urls/url";
+import { url, setHeaders } from "../../urls/url";
 import axios from "axios"
 import {toast} from "react-toastify"
 
@@ -44,6 +44,40 @@ export const authLogout=(creds)=>{
         localStorage.removeItem("token")
         dispatch({
             type:"LOGOUT"
+        })
+    }
+}
+export const authUser=()=>{
+    return(dispatch, getState)=>{
+        axios.get(`${url}/auth/loggedinuser`,setHeaders())
+        .then(user=>{
+            console.log(user.data);
+            
+            dispatch({
+                type:"AUTH_USER",
+                user
+            })
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
+}
+export const updateBio=(bio)=>{
+    return(dispatch, getState)=>{
+        axios.put(`${url}/auth/updatebio`,{bio},setHeaders())
+        .then(user=>{
+            console.log(user.data);
+            dispatch({
+                type:"UPDATE_BIO",
+                bio
+            })
+        })
+        .catch(error=>{
+            toast.error(error.response?.data.error,{
+                position: toast.POSITION.BOTTOM_RIGHT
+            })
+            console.log(error);
         })
     }
 }

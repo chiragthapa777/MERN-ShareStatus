@@ -56,8 +56,9 @@ router.post(
       //on success
       res
         .status(200)
-        .json({ message: "User created successfully!", authtoken });
+        .json({ message: `Hello ${req.body.name} !!! your account has been created successfully!`, authtoken });
     } catch (error) {
+      // console.log(error);
       res.status(500).json({ error: error });
     }
   }
@@ -94,8 +95,9 @@ router.post(
       const authtoken = jwt.sign(payload, secretKey);
       res
         .status(200)
-        .json({ message: "User logged in successfully!", authtoken });
+        .json({ message: `${user.name} logged in successfully!`, authtoken });
     } catch (error) {
+      console.log(error);   
       res.status(500).json({ error: error });
     }
   }

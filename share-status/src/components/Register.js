@@ -20,9 +20,7 @@ export default function Register() {
     e.preventDefault()
     dispatch(authRegister({name,email,password:pw}))
   }
-  useEffect(() => {
     if(auth.id!==null) navigate("/profile")
-  }, [auth])
   
 
   return (

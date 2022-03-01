@@ -1,5 +1,5 @@
 
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import Profile from "../components/Profile"
@@ -8,6 +8,8 @@ import {useDispatch, useSelector} from "react-redux"
 import { getUserPost } from "../redux-store/actions/postActions";
 
 export default function ProfilePage() {
+  const auth=useSelector(state=>state.auth)
+  const [bio, setBio] = useState(auth.bio)
   const posts=useSelector(state=>state.posts)
   const dispatch=useDispatch()
   useEffect(()=>{
@@ -20,7 +22,7 @@ export default function ProfilePage() {
     <div className="HomePage">
         <div className="HomeFlex">
            <div className="Profileleft">
-            <Profile userDetailProps={{}} />
+            <Profile userDetailProps={{}} bio={bio} setBio={setBio} />
             <Posts posts={{posts}}/>
 
            </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { authLogin } from '../redux-store/actions/authAction'
@@ -14,10 +14,7 @@ export default function Login() {
     e.preventDefault()
     dispatch(authLogin({email,password:pw}))
   }
-  console.log(auth);
-  useEffect(() => {
-    if(auth.id!==null) navigate("/profile")
-  }, [auth])
+  if(auth.id!==null)  navigate("/profile")
   
 
   

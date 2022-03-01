@@ -1,21 +1,22 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 
 export default function Sidebar() {
-  
+  const auth=useSelector(state=>state.auth)
   return (
     <div className="Sidebar">
       <div className="sidebarText">
-        User: chirag
+        Name : {auth.name}
       </div>
       <div className="sidebarText">
-        Email: email@g.com
+        Email : {auth.email}
       </div>
       <div className="sidebarText">
-        Bio:
+        Bio : 
       </div>
       <div className="sidebarBio">
-      Update your bio from profile
+      {auth.bio?auth.bio:"update from profile"}
       </div>
     </div>
   )

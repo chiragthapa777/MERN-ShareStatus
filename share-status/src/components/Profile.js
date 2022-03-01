@@ -1,11 +1,16 @@
-import React from "react";
+import React,{useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { updateBio } from "../redux-store/actions/authAction";
 import Users from "./Users";
 
-
-
-export default function Profile(props) {
+export default function Profile({bio, setBio}) {
+  const dispatch=useDispatch()
+ const auth=useSelector(state=>state.auth)
  
+ const handleUpdateBio=()=>{
+    dispatch(updateBio(bio))
+ }
 const location=useLocation()
   return (
     <>
@@ -14,19 +19,20 @@ const location=useLocation()
           <table className="profileDetail">
             <tr>
               <th>Name</th>
-              <td>name</td>
+              <td>{auth.name}</td>
             </tr>
             <tr>
               <th>Email</th>
-              <td>chirag@gmail.com</td>
+              <td>{auth.email}</td>
             </tr>
             <tr>
               <th>
-                Bio{" "}
+                Bio
                 <button
                   className={`button ${
                     location.pathname !== "/profile" && "displayNone"
                   }`}
+                  onClick={handleUpdateBio}
                 >
                   save
                 </button>
@@ -35,6 +41,8 @@ const location=useLocation()
                 <textarea
                   rows="5"
                   placeholder="Write something....."
+                  value={bio}
+                  onChange={e=>setBio(e.target.value)}
                 ></textarea>
               </td>
             </tr>

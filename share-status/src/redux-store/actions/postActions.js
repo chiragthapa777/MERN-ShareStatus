@@ -25,7 +25,6 @@ export const addPost=(status)=>{
     return(dispatch)=>{
         axios.post(`${url}/post/addpost`,status, setHeaders())
         .then((post=>{
-            console.log(post)
             dispatch({
                 type: "ADD_POST",
                 post
