@@ -18,7 +18,6 @@ export default function Users({ optOne, users}) {
         return user
       }
   })
-  console.log(location.pathname,`/user/${profileId}`);
   
   return (
     <div className="Users">
