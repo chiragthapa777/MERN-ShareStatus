@@ -16,7 +16,8 @@ const userSchema = new Schema({
     required: true,
   },
   bio:{
-    type:String
+    type:String,
+    default:""
   },
   following: {
     type: [String]

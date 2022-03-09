@@ -7,6 +7,10 @@
   --text-light-gray: #919191;
   --text-gray: #808080;
   --green:#1dd3b0
+  /* --bg-gray:red;
+  --text-light-gray: pink;
+  --text-gray: purple;
+  --green:brown; */
 }
 /* ================================ */
 /* Globals========================== */
@@ -20,9 +24,10 @@
 textarea:focus, input:focus{
   outline: none;
 }
-::-webkit-scrollbar {
-  width: 10px;
-}
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
 
 /* Track */
 ::-webkit-scrollbar-track {
@@ -38,6 +43,7 @@ textarea:focus, input:focus{
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
+
 html{
     background-color: var(--bg-gray);
 }
@@ -189,7 +195,7 @@ a,button,Link{
 /* ================================ */
 .Posts{
   flex: 7;
-  margin: 5px 10px;
+  margin: 5px auto;
 }
 /* ================================ */
 /* addpost========================== */
@@ -201,7 +207,7 @@ a,button,Link{
     background-color: #ffffff;
     border-radius: 20px;
     padding: 20px;
-    margin: 5px;
+    margin: 5px auto;
     margin-bottom: 40px;
   }
   .addPostForm h3{
@@ -233,7 +239,7 @@ a,button,Link{
   background-color: #ffffff;
   border-radius: 20px;
   padding: 20px;
-  margin: 15px 5px;
+  margin: 15px auto;
 }
 .pcardTop{
   display: flex;
@@ -256,15 +262,22 @@ a,button,Link{
   padding: 5px 0px;
 
 }
+.card-like-cmt{
+  display: flex;
+  justify-content: space-between;
+}
 .pcardBottom{
   padding-top:5px ;
   display: flex;
+  justify-content: space-between;
 }
 .likes,.comments{
   margin: 4px 0px;
-  margin-right: 50px;
   display: flex;
   cursor: pointer;
+}
+.likes{
+  margin-right: 50px;
 }
 .likeActive{
   color: var(--green);
@@ -317,6 +330,39 @@ a,button,Link{
   height: 0px;
   overflow: hidden;
 }
+.cardButton{
+  margin-left: 20px;
+}
+@media screen and (max-width: 820px) {
+  .PostCard{
+    font-size: 14px;
+  }
+  .comments,.likes{
+    font-size: 12px;
+    margin-right: 35px;
+  }
+  .cardButton{
+    margin: 0px;
+    margin-right: 10px;
+    margin-right: 5px;
+  }
+  .likeCount, .commentCount{
+    width: 70px;
+  }
+  .PostCard .button{
+    
+    font-size: 12px
+  }
+  @media screen and (max-width: 820px) {
+    .comments,.likes{
+      font-size: 12px;
+      margin-right: 10px;
+    }
+    .cardButton{
+      margin-right: 3px;
+    }
+  }
+}
 
 /* ================================ */
 /* Sidebar========================== */
@@ -348,7 +394,7 @@ a,button,Link{
   .Profileleft{
     color: var(--text-gray);
     flex: 7;
-    margin: 5px 10px;
+    margin: 5px auto;
     display: block;
     width: 100%;
   } 
@@ -389,44 +435,48 @@ a,button,Link{
   }
   .Users{
     background-color: #ffffff;
-    border-radius: 20px;
-    padding: 20px;
-    margin: 10px;
     box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 20px;
+
   }
   .Users h3{
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
   .userCardContents{
-    width: 100%;
   }
   .UserCard{
     background-color: var(--bg-gray);
-    padding: 5px 10px;
   }
   .UserCard td{
-    border-radius: 5px;
-    padding: 5px 10px;
+    padding: 3px;
   }
   .tableUserName{
     width: 100%;
     text-align: center;
+    text-align: left;
+  }
+  .tableUserEmail{
+    color: var(--text-light-gray);
+    font-size: .7em;
   }
   .tableHead{
-    width: 100%;
     background-color: var(--text-gray);
-    padding: 10px 0px;
-    border-radius: 5px;
     color: white;
+    padding: 10px;
   }
   @media screen and (max-width: 680px) {
     th,tr,td,.tableHead,.tableUserName{
-      width: 50%;
       font-size: 12px;
       margin: 0px;
       padding: 0px;
+    }
+    .tableHead{
+      padding: 5px 0px;
+    }
+
+    .profileCard th,tr,td{
+        width: 20%;
     }
   }
   /* ================================ */
@@ -436,7 +486,7 @@ a,button,Link{
     background-color: #ffffff;
     border-radius: 20px;
     padding: 20px;
-    margin: 10px;
+    margin: 10px auto;
     box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
   }
   .searchContainer{

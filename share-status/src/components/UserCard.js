@@ -1,18 +1,41 @@
-import React  from "react";
+import React, {useEffect}  from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { followUnFollow } from "../redux-store/actions/authAction";
+import { Link } from "react-router-dom";
 
 
-export default function UserCard(props) {
+
+export default function UserCard({user}) {
+  const dispatch=useDispatch()
+  const auth=useSelector(state=>state.auth) 
+
+  const handleFollow=()=>{
+    dispatch(followUnFollow(user._id))
+  }
+ 
   return (
     <tr className="UserCard">
-      <td className="tableUserName">chirag</td>
-      <td className="tableUserName">email</td>
+      <td className="tableUserName">
+        {user.name}
+        <div className="tableUserEmail">
+          {user.email}
+        </div>
+      </td>
       <td>
-        <button className="button">
-          follow
+        <button className="button" onClick={handleFollow}>
+          { 
+            auth!==null &&
+            auth.following.includes(user._id)?
+            "Unfollow":
+            "Follow"
+          }
         </button>
       </td>
       <td>
-        <button className="button" >profile</button>
+        <button className="button" >
+          <Link to={`/user/${user._id}`}>profile</Link>
+          
+        </button>
       </td>
     </tr>
   );

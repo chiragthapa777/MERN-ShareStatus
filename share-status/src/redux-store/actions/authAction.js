@@ -39,7 +39,7 @@ export const authRegister=(creds)=>{
         })
     }
 }
-export const authLogout=(creds)=>{
+export const authLogout=()=>{
     return(dispatch)=>{
         localStorage.removeItem("token")
         dispatch({
@@ -48,11 +48,9 @@ export const authLogout=(creds)=>{
     }
 }
 export const authUser=()=>{
-    return(dispatch, getState)=>{
+    return(dispatch)=>{
         axios.get(`${url}/auth/loggedinuser`,setHeaders())
         .then(user=>{
-            console.log(user.data);
-            
             dispatch({
                 type:"AUTH_USER",
                 user
@@ -64,13 +62,30 @@ export const authUser=()=>{
     }
 }
 export const updateBio=(bio)=>{
-    return(dispatch, getState)=>{
+    return(dispatch)=>{
         axios.put(`${url}/auth/updatebio`,{bio},setHeaders())
         .then(user=>{
-            console.log(user.data);
             dispatch({
                 type:"UPDATE_BIO",
                 bio
+            })
+        })
+        .catch(error=>{
+            toast.error(error.response?.data.error,{
+                position: toast.POSITION.BOTTOM_RIGHT
+            })
+            console.log(error);
+        })
+    }
+}
+export const followUnFollow=(id)=>{
+    return(dispatch)=>{
+        axios.put(`${url}/users/updatefollow/${id}`,{},setHeaders())
+        .then(user=>{
+            console.log(user.data.meUser);
+            dispatch({
+                type:"FOLLOW",
+                user
             })
         })
         .catch(error=>{

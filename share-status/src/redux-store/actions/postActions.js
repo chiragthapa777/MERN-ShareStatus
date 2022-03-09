@@ -21,6 +21,23 @@ export const getUserPost=()=>{
         })
     }
 }
+export const getHomePost=()=>{
+    return(dispatch)=>{
+        axios.get(`${url}/post/getfollowpost`, setHeaders())
+        .then((posts=>{
+            dispatch({
+                type: "GET_HOME_POST",
+                posts:posts.data
+            })
+        }))
+        .catch(error=>{
+            console.log(error.response.data)
+            toast.error(error.response?.data.error,{
+                position: toast.POSITION.BOTTOM_RIGHT
+            })
+        })
+    }
+}
 export const addPost=(status)=>{
     return(dispatch)=>{
         axios.post(`${url}/post/addpost`,status, setHeaders())

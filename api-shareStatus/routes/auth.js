@@ -49,7 +49,11 @@ router.post(
       const payload = {
         user: {
           id: user.id,
-          name:user.name
+          name:user.name,
+          email:user.email,
+          following:[],
+          followedBy:[],
+          bio:""
         },
       };
       const authtoken = jwt.sign(payload, secretKey);
@@ -89,7 +93,11 @@ router.post(
       const payload = {
         user: {
           id: user.id,
-          name:user.name
+          name:user.name,
+          email:user.email,
+          following:user.following,
+          followedBy:user.followedBy,
+          bio:user.bio
         },
       };
       const authtoken = jwt.sign(payload, secretKey);

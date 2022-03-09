@@ -1,11 +1,15 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { authLogout } from '../redux-store/actions/authAction';
 
 
 
+
+
 export default function Navbar() { 
+
+  const auth=useSelector(state=>state.auth)
   const dispatch=useDispatch()
   let navigate=useNavigate()
   let location = useLocation();
@@ -53,7 +57,7 @@ export default function Navbar() {
           </div>
           <div className="navRight">
             <li>
-              <p className="navUser">Logged in as chirag</p>
+              <p className="navUser">Logged in as {auth.name}</p>
             </li>
             <li>
               <a className="button" onClick={handleLogout}>

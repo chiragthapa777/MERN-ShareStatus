@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Moment from "moment";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   commentPost,
   deletePost,
   likePost,
 } from "../redux-store/actions/postActions";
 
+
 export default function PostCard({ post, setStatus }) {
+  const auth=useSelector(state=>state.auth)
   const [comment, setComment] = useState("");
   const [openCmt, setOpenCmt] = useState(false);
   const dispatch = useDispatch();
@@ -34,7 +36,6 @@ export default function PostCard({ post, setStatus }) {
     dispatch(likePost(_id));
   };
   const handlePostComment = () => {
-    console.log("comment post", comment);
     dispatch(commentPost(comment, _id));
 
     setComment("");
@@ -50,9 +51,11 @@ export default function PostCard({ post, setStatus }) {
         <div className="pcardStatus">{status}</div>
         <div className="pcardBottom">
           {/* likes */}
+          <div className="card-like-cmt">
+
           <div
             className={`likes ${
-              likes.includes("620b45e705ff97ec7297d73f") && "likeActive"
+              likes.includes(auth.id) && "likeActive"
             }`}
           >
             <i className="likeIcon fas fa-thumbs-up" onClick={handleLike}></i>
@@ -65,13 +68,14 @@ export default function PostCard({ post, setStatus }) {
             <i className="commentIcon fa-solid fa-comment-dots"></i>
             <div className="likeCount">{comments.length} Comments</div>
           </div>
+          </div>
           {/* edit actions */}
           {location.pathname === "/profile" && (
-            <div className="profileButton">
-              <button className="button profileButton" onClick={handleEdit}>
+            <div className="cardButtons">
+              <button className="button cardButton" onClick={handleEdit}>
                 Edit
               </button>
-              <button className="button profileButton" onClick={handleDelete}>
+              <button className="button cardButton" onClick={handleDelete}>
                 Delete
               </button>
             </div>
@@ -82,12 +86,12 @@ export default function PostCard({ post, setStatus }) {
             {comments.length > 0
               ? comments.map((comment) => {
                   return (
-                      <div key={comment._id} className="commentDisplay">
-                        <div className="commenterName">
-                          {comment.commenterName}
-                        </div>
-                        <div className="commentText">{comment.comment}</div>
+                    <div key={comment._id} className="commentDisplay">
+                      <div className="commenterName">
+                        {comment.commenterName}
                       </div>
+                      <div className="commentText">{comment.comment}</div>
+                    </div>
                   );
                 })
               : "No comments yet"}

@@ -2,6 +2,7 @@ import { toast } from "react-toastify"
 
 const postReducer=(state=[], action)=>{
     switch (action.type) {
+        case "GET_HOME_POST":
         case "GET_USER_POST":
             return[...action.posts]
         case "ADD_POST":

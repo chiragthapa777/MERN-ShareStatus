@@ -10,6 +10,8 @@ import {ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { authUser } from './redux-store/actions/authAction';
 import { useDispatch, useSelector } from 'react-redux';
+import { getAllUser } from './redux-store/actions/userActions';
+
 
 
 export default function App() {
@@ -17,6 +19,7 @@ export default function App() {
   let user=auth.id
   const dispatch=useDispatch()
   useEffect(() => {
+    dispatch(getAllUser())
     user=auth.id
     if(user!==null){
       dispatch(authUser())
@@ -33,7 +36,7 @@ export default function App() {
                 <Route>
                   <Route path="/" element={<Homepage  />} />
                   <Route path="/profile" element={<ProfilePage />} />
-                  <Route path="/user/:id" element={<VisitProfile />} />
+                  <Route path="/user/:profileId" element={<VisitProfile />} />
                   <Route path="/user" element={<Userpage />} />
                 </Route>
               )

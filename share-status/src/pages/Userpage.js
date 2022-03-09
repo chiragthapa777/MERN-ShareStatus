@@ -2,10 +2,31 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Users from "../components/Users";
+import { getAllUser } from "../redux-store/actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Userpage() {
-  const [search, setSearch] = useState("");
+  let {users, auth}=useSelector(state=>state)
 
+  users=users.filter(user=>{
+    if(auth.id!==user._id){
+      return user
+    }
+  })
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(getAllUser())
+  },[])
+  const [search, setSearch] = useState("");
+  if(search!=="")
+  {
+    users=users.filter(user=>{
+      if(user.name.includes(search)||user.email.includes(search))
+      {
+        return user
+      }
+    })
+  }
   return (
     <div>
       <Navbar />
@@ -27,7 +48,10 @@ export default function Userpage() {
                 />
               </div>
             </form>
-            <Users />
+            {users.length!==0
+            &&
+            <Users users={users}/>
+            }
           </div>
           <Sidebar />
         </div>
