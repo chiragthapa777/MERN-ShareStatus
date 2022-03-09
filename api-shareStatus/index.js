@@ -17,7 +17,7 @@ app.use("/api/users",require("./routes/users"))
 
 
 app.get("/",(req, res)=>{
-    res.json({message:"hello world"})
+    res.send("welcome to share status api")
 })
 
 app.listen(port,()=>{
