@@ -6,26 +6,15 @@ import { getAllUser } from "../redux-store/actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Userpage() {
+  const [query, setquery] = useState("")
   let {users, auth}=useSelector(state=>state)
-
-  users=users.filter(user=>{
-    if(auth.id!==user._id){
-      return user
-    }
-  })
   const dispatch=useDispatch()
   useEffect(()=>{
     dispatch(getAllUser())
   },[])
-  const [search, setSearch] = useState("");
-  if(search!=="")
-  {
-    users=users.filter(user=>{
-      if(user.name.includes(search)||user.email.includes(search))
-      {
-        return user
-      }
-    })
+  const handleSearch=(e)=>{
+    e.preventDefault()
+    dispatch(getAllUser(query))
   }
   return (
     <div>
@@ -35,14 +24,14 @@ export default function Userpage() {
           <div className="Profileleft">
             <form className="userSearch">
               <div className="searchContainer">
-                <button type="submit">
+                <button type="submit" onClick={(e)=>{handleSearch(e)}}>
                   <i className="searchIcon fas fa-search"></i>
                 </button>
                 <input
                   type="text"
-                  value={search}
+                  value={query}
                   onChange={(e) => {
-                    setSearch(e.target.value);
+                    setquery(e.target.value)
                   }}
                   placeholder="Search Users"
                 />

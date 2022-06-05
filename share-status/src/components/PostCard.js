@@ -45,9 +45,13 @@ export default function PostCard({ post, setStatus }) {
     <>
       <div className="PostCard">
         <div className="pcardTop">
-          <div className="pcardUser">{userName}</div>
+          <div className="pcardUser">
+            <img src="https://cdn.pixabay.com/photo/2021/07/27/13/40/woman-6496881_960_720.jpg" alt=""/>
+            <div className="pcardUserName">{userName}</div>
+            </div>
           <div className="pcardDate">Posted : {Moment(date).fromNow()}</div>
         </div>
+           <img className="pcardImg" src="https://cdn.pixabay.com/photo/2021/07/27/13/40/woman-6496881_960_720.jpg" alt="" />
         <div className="pcardStatus">{status}</div>
         <div className="pcardBottom">
           {/* likes */}

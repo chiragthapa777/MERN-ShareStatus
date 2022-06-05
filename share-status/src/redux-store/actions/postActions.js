@@ -4,9 +4,13 @@ import {toast} from "react-toastify"
 
 
 
-export const getUserPost=()=>{
+export const getUserPost=(userId)=>{
     return(dispatch)=>{
-        axios.get(`${url}/post/getuserpost`, setHeaders())
+        let path=`${url}/post/getuserpost`
+        if(userId){
+            path=`${url}/post/getuserpost/${userId}`
+        }
+        axios.get(path, setHeaders())
         .then((posts=>{
             dispatch({
                 type: "GET_USER_POST",

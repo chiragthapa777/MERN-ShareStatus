@@ -1,4 +1,5 @@
 export const url="http://localhost:2000/api"
+// export const url="http://192.168.1.73:2000/api"
 
 export const setHeaders=()=>{
     const header={

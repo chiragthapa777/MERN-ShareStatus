@@ -1,16 +1,21 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import AddPost from "./AddPost";
 import PostCard from "./PostCard";
 
 export default function Posts(props) {
   const [status, setStatus] = useState({});
+  let location = useLocation();
   const { posts } = props;
   const postArr = posts.posts;
 
   return (
     <div className="Posts">
-      <AddPost setStatus={setStatus} status={status} />
+      {
+        location.pathname === "/profile" && (<AddPost setStatus={setStatus} status={status} />)
+      }
+      
       <div className="postList">
         {postArr.length > 0
           ? postArr.map((post) => {

@@ -10,9 +10,15 @@ const authenticate = require("../middleware/authenticate");
 //fetch user Post(crud)======================================================
 // =============================================================================
 //fetch all Post of user
-router.get("/getuserpost", authenticate, async (req, res) => {
+router.get("/getuserpost/:id?", authenticate, async (req, res) => {
   try {
-      const posts = await Post.find({ user: req.user.id }).sort({date:-1});
+    let posts=[]
+      if(req.params.id){
+        posts = await Post.find({ user: req.params.id }).sort({date:-1});
+      }
+      else{
+        posts = await Post.find({ user: req.user.id }).sort({date:-1});
+      }
       res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({ error: error });

@@ -1,9 +1,10 @@
 import React from "react";
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { addPost } from "../redux-store/actions/postActions";
 import { updatePost } from "../redux-store/actions/postActions";
 
 export default function AddPost({ status, setStatus }) {
+  const auth=useSelector(state=>state.auth)
   const dispatch=useDispatch()
   const handlePost=e=>{
     e.preventDefault()
@@ -20,7 +21,7 @@ export default function AddPost({ status, setStatus }) {
     <div className="Addpost">
       <form action="" className="addPostForm">
         <h3>
-          <span>Chirag</span>, update your status
+          <span style={{"textTransform":"uppercase"}}>{auth.name}</span>, update your status
         </h3>
         <textarea
           rows="3"
