@@ -1,0 +1,95 @@
+
+/* ================================ */
+/* navbar========================== */
+/* ================================ */
+.navbar{
+    z-index: 100;
+    position: sticky;
+    top: 0px;
+    height: 60px;
+    color: var(--text-light-gray);
+    display: flex;
+    background-color: #ffffff;
+    transition: 0.4s;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+  }
+  .navbar li{
+    margin: auto 0px;
+  }
+  .navActive{
+    color: var(--text-gray);
+    font-weight: 600;
+  }
+  .navlogo{
+    margin:10px 10px;
+    display: inline-block;
+  }
+  .navLogoText{
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    color: var(--green);
+    font-weight: 700;
+  }
+  .navContent{
+    flex: 10;
+    display: flex;
+    justify-content: space-between;
+  }
+  .navlinks{
+    font-size: 17px;
+    margin: auto 15px;
+  }
+  .navUser{
+    margin: auto 15px;
+    font-size: 12px;
+  }
+  .navLeft{
+    display: flex;
+  }
+  .navRight{
+    display: flex;
+  }
+  .menuBar{
+    display: none;
+    color: var(--green);
+    font-size: 22px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2147483647;
+  }
+  #menu{
+    display: none;
+  }
+  @media screen and (max-width: 780px) {
+    .navbar li{
+        margin: 10px 2px;
+    }
+    .navbar{
+        overflow: hidden;
+    }
+    .menuBar{
+        display: block;
+        
+    }
+    .navbar{
+        display: block;
+    }
+    .navContent{
+        display: block;
+    }
+    .navLeft{
+        display: block;
+    }
+    .navRight{
+        display: block;
+    }
+    .button{
+        margin-bottom:10px ;
+    }
+    #menu:checked ~ .navbar{
+        height: 225px;
+    }
+  }
+  

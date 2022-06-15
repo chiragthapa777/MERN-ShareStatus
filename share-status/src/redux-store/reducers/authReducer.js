@@ -54,6 +54,7 @@ let initAuth = {
   following: followingFunc(),
   followedBy: followedByFunc(),
   bio: bioFunc(),
+  toggleLoader:false
 };
 
 const authReducer = (state = initAuth, action) => {
@@ -81,6 +82,7 @@ const authReducer = (state = initAuth, action) => {
       return {
         ...state,
         bio: action.bio,
+        image:action.image
       };
     case "FOLLOW":
       return {
@@ -91,6 +93,11 @@ const authReducer = (state = initAuth, action) => {
       return {
         ...action.user.data,
         id: action.user.data._id,
+      };
+    case "TOGGLE_LOADER":
+      return {
+        ...state,
+        toggleLoader:action.status
       };
     default:
       return state;

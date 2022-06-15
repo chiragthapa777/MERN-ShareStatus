@@ -1,0 +1,26 @@
+/* ================================ */
+/* Homepage========================== */
+/* ================================ */
+.HomePage{
+    width: 70%;
+    margin: 30px auto;
+  }
+  .HomeFlex{
+    display: flex;
+  }
+  @media screen and (max-width: 780px) {
+    .HomeFlex{
+      flex-direction: column;
+    }
+  }
+  @media screen and (max-width: 1080px) {
+    .HomePage{
+      width: 90%;
+    }
+  }
+  @media screen and (max-width: 580px) {
+    .HomePage{
+      width: 97%;
+    }
+  }
+  

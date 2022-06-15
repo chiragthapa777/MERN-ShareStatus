@@ -1,0 +1,21 @@
+@media screen and (max-width: 680px) {
+    th,tr,td,.tableHead,.tableUserName{
+      font-size: 12px;
+      margin: 0px;
+      padding: 0px;
+    }
+    .tableHead{
+      padding: 5px 0px;
+    }
+
+    .profileCard th,tr,td{
+        width: 20%;
+    }
+  }
+  .profileDetail td textarea{
+    resize: none;
+    color: var(--text-gray);
+    border: none;
+    width: 100%;  
+
+  }

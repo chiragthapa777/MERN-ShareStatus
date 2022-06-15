@@ -1,11 +1,11 @@
 import React,{useEffect} from 'react'
-import Homepage from './pages/Homepage';
-import ProfilePage from './pages/ProfilePage';
-import Userpage from './pages/Userpage';
-import Login from './components/Login';
-import Register from './components/Register';
+import Homepage from './pages/homepage/Homepage';
+import ProfilePage from './pages/profilepage/ProfilePage';
+import Userpage from './pages/userpage/Userpage';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import VisitProfile from './pages/VisitProfile';
+import VisitProfile from './pages/visitprofile/VisitProfile';
 import {ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { authUser } from './redux-store/actions/authAction';

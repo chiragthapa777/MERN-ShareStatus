@@ -9,11 +9,19 @@ export const authLogin=(creds)=>{
         .then((token=>{
             localStorage.setItem("token", token.data.authtoken)
             dispatch({
+                type:"TOGGLE_LOADER",
+                status:false
+            })
+            dispatch({
                 type: "LOGIN",
                 token
             })
         }))
         .catch(error=>{
+            dispatch({
+                type:"TOGGLE_LOADER",
+                status:false
+            })
             console.log(error)
             toast.error(error.response?.data.error,{
                 position: toast.POSITION.BOTTOM_RIGHT
@@ -27,11 +35,19 @@ export const authRegister=(creds)=>{
         .then((token=>{
             localStorage.setItem("token", token.data.authtoken)
             dispatch({
+                type:"TOGGLE_LOADER",
+                status:false
+            })
+            dispatch({
                 type: "REGISTER",
                 token
             })
         }))
         .catch(error=>{
+            dispatch({
+                type:"TOGGLE_LOADER",
+                status:false
+            })
             console.log(error)
             toast.error(error.response?.data.error,{
                 position: toast.POSITION.BOTTOM_RIGHT
@@ -61,13 +77,15 @@ export const authUser=()=>{
         })
     }
 }
-export const updateBio=(bio)=>{
+export const updateBio=(bio,image)=>{
+    console.log({bio,image})
     return(dispatch)=>{
-        axios.put(`${url}/auth/updatebio`,{bio},setHeaders())
+        axios.put(`${url}/auth/updatebio`,{bio,image},setHeaders())
         .then(user=>{
             dispatch({
                 type:"UPDATE_BIO",
-                bio
+                bio,
+                image:user.image
             })
         })
         .catch(error=>{
@@ -94,5 +112,13 @@ export const followUnFollow=(id)=>{
             })
             console.log(error);
         })
+    }
+}
+export const loaderToggle=(status)=>{
+    return(dispatch)=>{
+            dispatch({
+                    type:"TOGGLE_LOADER",
+                    status
+            })
     }
 }

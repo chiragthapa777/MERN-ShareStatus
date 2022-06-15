@@ -44,6 +44,7 @@ export const getHomePost=()=>{
 }
 export const addPost=(status)=>{
     return(dispatch)=>{
+        console.log(status)
         axios.post(`${url}/post/addpost`,status, setHeaders())
         .then((post=>{
             dispatch({

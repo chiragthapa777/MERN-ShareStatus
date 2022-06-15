@@ -1,0 +1,82 @@
+/* ================================ */
+/* Homepage========================== */
+/* ================================ */
+.HomePage{
+    width: 70%;
+    margin: 30px auto;
+  }
+  .HomeFlex{
+    display: flex;
+  }
+  @media screen and (max-width: 780px) {
+    .HomeFlex{
+      flex-direction: column;
+    }
+  }
+  @media screen and (max-width: 1080px) {
+    .HomePage{
+      width: 90%;
+    }
+  }
+  @media screen and (max-width: 580px) {
+    .HomePage{
+      width: 97%;
+    }
+  }
+  
+  /* ================================ */
+  /* Profile========================== */
+  /* ================================ */
+  .Profileleft{
+    color: var(--text-gray);
+    flex: 7;
+    margin: 5px auto;
+    display: block;
+    width: 100%;
+  } 
+  .profileCard
+  {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 5px;
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
+    margin-top: 100px;
+    
+  }
+  .profilePictureWrapper{
+    margin-top: 100px;
+    position: relative;
+  }
+  .profilePicture{
+    position: absolute;
+    bottom: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+  .profilePicture img{
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .profileDetail{
+    width: 100%;
+  }
+  .profileDetail th{
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+  }
+  .profileDetail td{
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+  }
+  .profileButton{
+    font-size: 14px;
+    margin-left: 20px;
+  }
