@@ -17,6 +17,7 @@ export default function Userpage() {
     e.preventDefault()
     dispatch(getAllUser(query))
   }
+  console.log(users)
   return (
     <div>
       <Navbar />

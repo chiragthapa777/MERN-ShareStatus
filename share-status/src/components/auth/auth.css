@@ -12,8 +12,8 @@
   .loginForm{
     margin-top: -200px;
     background-color: #ffffff;
-    padding: 20px;
-    border-radius: 20px;
+    padding: 10px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
   }
@@ -23,23 +23,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0px;
+    margin: 10px 0px;
   }
   .loginForm input{
     font-size: 18px;
     padding: 5px;
-    margin: 20px 2px;
+    margin: 15px 2px;
     width: 350px;
     color: var(--text-gray);
     border: none;
-    border-bottom: 2px solid var(--text-gray);
+    border-bottom: 1.5px solid var(--text-gray);
   }
   .LoginSmall{
     margin-top: 20px;
     text-align: center;
     font-size: 12px;
-    text-decoration: underline;
 
+  }
+  .LoginSmall span{
+    color: var(--green);
+    text-decoration: underline;
+  }
+  .authDesign{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--green);
+  }
+  .authDesign p{
+    display: block;
+    white-space:nowrap;
+    color: var(--text-gray);
+    font-size: 18px;
+  }
+  .authDesign hr{
+    width:50%;
+    margin:0 auto;
+    border: 1px solid var(--green);
   }
 
   .displayNone{
@@ -52,4 +73,13 @@
   
   @keyframes mymove {
     50% {transform: rotate(50560deg);}
+  }
+  @media screen and (max-width: 450px){
+    .loginForm input{
+      font-size: 14px;
+      border-bottom: 1.25px solid var(--text-gray);
+    }
+    .loginForm h1{
+      font-size: 25px;
+    }
   }

@@ -15,10 +15,10 @@ router.get("/getuserpost/:id?", authenticate, async (req, res) => {
   try {
     let posts=[]
       if(req.params.id){
-        posts = await Post.find({ user: req.params.id }).sort({date:-1});
+        posts = await Post.find({ user: req.params.id }).populate('user').sort({date:-1});
       }
       else{
-        posts = await Post.find({ user: req.user.id }).sort({date:-1});
+        posts = await Post.find({ user: req.user.id }).populate('user').sort({date:-1});
       }
       res.status(200).json(posts);
   } catch (error) {
@@ -72,11 +72,11 @@ router.delete("/deletepost/:id", authenticate, async (req, res) => {
     let post = await Post.findOne({ _id: PostId });
     if (!post) return res.status(401).json({ error: "Cannot find the Post" });
     //since user is object type so need to be converted to string or else you can change Post scheme of user to String
-    if (post.user !== req.user.id)
-      return res
-        .status(401)
-        .json({ error: "You are not authorized to delete the Post" });
-    //deleting the Post
+    // if (post.user._id !== req.user.id)
+    //   return res
+    //     .status(401)
+    //     .json({ error: "You are not authorized to delete the Post" });
+    // //deleting the Post
     post = await Post.findByIdAndDelete(PostId);
     res.status(200).json({ message: "Post is successfully deleted", post });
   } catch (error) {
@@ -96,10 +96,10 @@ router.put(
       if (!post) return res.status(401).json({ error: "Cannot find the Post" });
       // console.log(Post.user, req.user.id);
       //since user is object type so need to be converted to string or else you can change Post scheme of user to String
-      if (post.user !== req.user.id)
-        return res
-          .status(401)
-          .json({ error: "You are not authorized to delete the Post" });
+      // if (post.user !== req.user.id)
+      //   return res
+      //     .status(401)
+      //     .json({ error: "You are not authorized to delete the Post" });
       //updating the Post
       post = await Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
       res.status(200).json({ message: "Post is successfully updated", post });
@@ -117,7 +117,7 @@ router.get("/getfollowpost", authenticate, async (req, res) => {
     try {
         let user=await User.findOne({_id:req.user.id})
         let array=user.following
-        const posts = await Post.find({ user:{$in:[...array,req.user.id]} }).sort({date:-1});
+        const posts = await Post.find({ user:{$in:[...array,req.user.id]} }).populate('user').sort({date:-1});
       res.status(200).json(posts);
         
     //    const posts = await Post.find({public:true});

@@ -7,12 +7,12 @@ const postReducer=(state=[], action)=>{
             return[...action.posts]
         case "ADD_POST":
             toast.success(`${action.post.data.message}`,{
-                position: toast.POSITION.BOTTOM_RIGHT
+                position: toast.POSITION.TOP_RIGHT
             })
             return[action.post.data.post, ...state]
         case "UPDATE_POST":
             toast.success(`${action.post.data.message}`,{
-                position: toast.POSITION.BOTTOM_RIGHT
+                position: toast.POSITION.TOP_RIGHT
             })
             return state.map((post)=>
             post._id === action.post.data.post._id ? action.post.data.post : post
@@ -27,7 +27,7 @@ const postReducer=(state=[], action)=>{
         )
         case "DELETE_POST":
             toast.success(`${action.post.data.message}`,{
-                position: toast.POSITION.BOTTOM_RIGHT
+                position: toast.POSITION.TOP_RIGHT
             })
             return state.filter((post)=>
             post._id !== action.id

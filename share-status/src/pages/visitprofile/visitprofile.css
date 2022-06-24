@@ -34,16 +34,6 @@
     display: block;
     width: 100%;
   } 
-  .profileCard
-  {
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 20px;
-    margin: 5px;
-    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
-    margin-top: 100px;
-    
-  }
   .profilePictureWrapper{
     margin-top: 100px;
     position: relative;
@@ -58,6 +48,9 @@
     width: 100%;
   }
   .profilePicture img{
+    box-shadow: 1px 5px 30px 0px rgba(168,168,168,0.75);
+    -webkit-box-shadow: 1px 5px 30px 0px rgba(168,168,168,0.75);
+    -moz-box-shadow: 1px 5px 30px 0px rgba(168,168,168,0.75);
     height: 250px;
     width: 250px;
     object-fit: cover;

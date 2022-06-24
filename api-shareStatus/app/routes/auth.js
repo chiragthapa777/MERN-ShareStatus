@@ -44,6 +44,7 @@ router.post(
         name: req.body.name,
         email: req.body.email,
         password: hassedPassword,
+        image:{url:"",public_id:""}
       });
       //sending jwt token
       const payload = {
@@ -53,6 +54,7 @@ router.post(
           email:user.email,
           following:[],
           followedBy:[],
+          image:user.image,
           bio:""
         },
       };
@@ -98,7 +100,8 @@ router.post(
           email:user.email,
           following:user.following,
           followedBy:user.followedBy,
-          bio:user.bio
+          bio:user.bio,
+          image:user.image,
         },
       };
       const authtoken = jwt.sign(payload, secretKey);
@@ -117,10 +120,12 @@ router.get("/loggedinuser", authenticate, async (req, res) => {
   try {
     const userDetail = req.user;
     let user = await User.findOne({ _id: userDetail.id });
+    delete user.password
     if (!user)
       return res
         .status(401)
         .json({ error: "User not found, try with valid token" });
+    console.log(user)
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ error: error });
@@ -131,17 +136,20 @@ router.put("/updatebio", authenticate, async (req, res) => {
   try {
     let user = await User.findOne({ _id:req.user.id });
       if (!user) return res.status(401).json({ error: "Cannot find the User" });
-      let updateBody={bio:req.body.bio}
+      let updateBody={}
       if(req.body.image){
         updateBody.image=req.body.image
       }
+      if(req.body.bio){
+        updateBody.bio=req.body.bio
+      }
+      console.log(updateBody)
       // console.log(Post.user, req.user.id);
       //since user is object type so need to be converted to string or else you can change Post scheme of user to String
       user = await User.findByIdAndUpdate(req.user.id, updateBody, {new: true})
       res.status(200).json({ message: "user is successfully updated", user });
   } catch (error) {
     console.log(error);
-    
     res.status(500).json({ error: error });
   }
 });

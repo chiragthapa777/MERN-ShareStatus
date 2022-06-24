@@ -33,7 +33,7 @@ export default function Register() {
         <input type="email" placeholder='Enter email' value={email} onChange={e=>{setEmail(e.target.value)}}/>
         <input type="password" placeholder='Enter password' value={pw} onChange={e=>{setPw(e.target.value)}}/>
         <button className="button">Register</button>
-        <Link className="LoginSmall" to="/login" >Already have an account? click here</Link>
+        <Link className="LoginSmall" to="/login" >Already have an account? <span>Login now</span> </Link>
       </form>
     </div>
   )

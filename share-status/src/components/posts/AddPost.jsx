@@ -3,30 +3,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../../redux-store/actions/postActions";
 import { updatePost } from "../../redux-store/actions/postActions";
 import Loader from "../loader/Loader";
-import { url as apiUrl , setHeaders } from "../../urls/url";
-import "./posts.css"
+import { url as apiUrl, setHeaders } from "../../urls/url";
+import "./posts.css";
 
 export default function AddPost({ status, setStatus }) {
   const [image, setimage] = useState(null);
-  const [imagebody, setimagebody] = useState({url:"",public_id:""});
+  const [imagebody, setimagebody] = useState({ url: "", public_id: "" });
   const [url, setUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  //handling the post sudmit
   const handlePost = (e) => {
     e.preventDefault();
     if (status._id) {
       dispatch(updatePost(status.status, status._id));
     } else {
-      dispatch(addPost({status:status.status,image:imagebody}));
+      dispatch(addPost({ status: status.status, image: imagebody }));
     }
     setStatus({ status: "" });
-    setUrl(null)
-    setimage(null)
-    setimagebody({url:"",public_id:""})
+    setUrl(null);
+    setimage(null);
+    setimagebody({ url: "", public_id: "" });
   };
+
+  //fucntion to insert image
   async function handleImageUpload(immm) {
-    let head = setHeaders();
+    // let head = setHeaders();
     const data = new FormData();
     data.append("file", immm);
     setUploading(true);
@@ -37,16 +41,16 @@ export default function AddPost({ status, setStatus }) {
     })
       .then((resp) => resp.json())
       .then((data) => {
-          setimagebody(data)
-          console.log(data)
-          setUrl(data.url);
-          setUploading(false)
+        setimagebody(data);
+        console.log(data);
+        setUrl(data.url);
+        console.log("set vayo haiiii",url)  
+        setUploading(false);
       })
       .catch((err) => {
-        console.log(err)
-        setUploading(false)
-      }          
-         );
+        console.log(err);
+        setUploading(false);
+      });
   }
   return (
     <div className="Addpost">
@@ -61,12 +65,7 @@ export default function AddPost({ status, setStatus }) {
           onChange={(e) => setStatus({ ...status, status: e.target.value })}
           placeholder="Write something....."
         ></textarea>
-        <label
-          htmlFor="postImg"
-          style={{ fontSize: "25px", display: "block", margin: "1px 10px",color:"#1dd3b0" }}
-        >
-          <i className="fa-solid fa-image"></i>
-        </label>
+
         <input
           style={{ display: "none" }}
           id="postImg"
@@ -86,17 +85,37 @@ export default function AddPost({ status, setStatus }) {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              marginBottom: "2px",
             }}
           >
-            {url && <img style={{height:"100%",width:"100%", objectFit:"cover"}} src={url} alt="post image" />}
+            {url && (
+              // eslint-disable-next-line jsx-a11y/img-redundant-alt
+              <img
+                style={{ height: "100%", width: "100%", objectFit: "cover" }}
+                src={url}
+                alt="post image"
+              />
+            )}
 
             {uploading && <Loader />}
           </div>
         )}
-
+        <div className="addPostButtonStack">
+        <label
+          htmlFor="postImg"
+          style={{
+            fontSize: "25px",
+            display: "block",
+            margin: "1px 10px",
+            color: "#1dd3b0",
+          }}
+        >
+          <i className="fa-solid fa-image"></i>
+        </label>
         <button type="submit" className="button" onClick={handlePost}>
           {status._id ? "Edit" : "Post"}
         </button>
+        </div>
       </form>
     </div>
   );

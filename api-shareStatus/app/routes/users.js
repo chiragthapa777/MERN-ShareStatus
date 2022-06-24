@@ -17,9 +17,14 @@ router.get("/getallusers", authenticate, async (req, res) => {
           { name: { $regex: req.query.search } },
           { email: { $regex: req.query.search } },
         ],
+        _id:{
+          $ne:req.user.id
+        }
       }).sort({ userName: -1 });
     } else {
-      user = await User.find().limit(10);
+      user = await User.find({_id:{
+        $ne:req.user.id
+      }}).limit(10);
     }
     res.status(200).json(user);
   } catch (error) {

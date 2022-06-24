@@ -32,7 +32,7 @@ export default function Login() {
         <input type="email" placeholder='Enter email' value={email} onChange={e=>{setEmail(e.target.value)}} />
         <input type="password" placeholder='Enter password' value={pw} onChange={e=>{setPw(e.target.value)}}/ >
         <button className="button">Login</button>
-        <Link className="LoginSmall" to="/register" >New to Share status? click here</Link>
+        <Link className="LoginSmall" to="/register" >New to Share status? <span>Register now</span></Link>
       </form>
     </div>
   )

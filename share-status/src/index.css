@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap');
 :root {
   --bg-gray:#F0F1F3;
+  --divider:#d5d5d5;
   --text-light-gray: #919191;
   --text-gray: #808080;
   --green:#1dd3b0
@@ -62,10 +63,10 @@ a,button,Link{
 .button{
   display:inline-block;
   background-color: var(--green);
-  border-radius: 10px;
+  border-radius: 5px;
   color: #ffffff;
   padding: 5px 10px;
-  box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
+  /* box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16); */
   font-weight: 700;
   margin:  auto 10px;
 }
@@ -78,3 +79,7 @@ a,button,Link{
   }
  
 
+  .vline {
+    border-left: 2px solid green;
+    height: 100%;
+  }

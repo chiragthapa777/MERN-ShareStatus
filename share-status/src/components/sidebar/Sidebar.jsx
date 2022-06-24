@@ -7,7 +7,7 @@ export default function Sidebar() {
   return (
     <div className="Sidebar">
       <img
-        src="images/blank-profile-picture-gb100cda33_1280.png"
+        src={auth.image?(auth.image.url!==""?auth.image.url:"images/blank-profile-picture-gb100cda33_1280.png"):"images/blank-profile-picture-gb100cda33_1280.png"}
         alt="prfile"
       />
   <div>

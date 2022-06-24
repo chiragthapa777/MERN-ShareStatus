@@ -8,17 +8,19 @@ import { url as apiUrl, setHeaders } from "../../urls/url";
 import "./profile.css"
 
 export default function Profile({ user }) {
-  console.log("user",user)
+  // console.log("user",user)
   const [image, setimage] = useState(null);
-  const [imagebody, setimagebody] = useState(user.image?user.image:{ url: "", public_id: "" });
+  const [imagebody, setimagebody] = useState({ url: "", public_id: "" });
   const [url, setUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
-  let [bio, setBio] = useState(user.bio);
+  const [bio, setBio] = useState(user.bio);
   const dispatch = useDispatch();
   const { auth, users } = useSelector((state) => state);
   const [followState, setfollowState] = useState(
     auth.following.includes(user._id) ? "unfollow" : "follow"
-  );
+    );
+  const [followedBy, setFollowedBy] = useState(false);
+  const [following, setFollowing] = useState(false);
 
   const handleFollowUnFollow = async () => {
     dispatch(followUnFollow(user._id));
@@ -29,8 +31,20 @@ export default function Profile({ user }) {
     }
   };
 
+  const[editedFlag,setEditedFlag]=useState({bio:false,image:false})
+
   const handleUpdateBio = () => {
-    dispatch(updateBio(bio,imagebody));
+    if(editedFlag.image===false && editedFlag.bio===true){
+      dispatch(updateBio(bio));
+    }
+    else if(editedFlag.bio===false && editedFlag.image===true){
+      dispatch(updateBio(null,imagebody));
+    }
+    else if(editedFlag.image===true && editedFlag.bio===true){
+      dispatch(updateBio(bio,imagebody));
+    }
+    setEditedFlag({image:false,bio:false})
+    console.log(editedFlag)
   };
   async function handleImageUpload(immm) {
     const data = new FormData();
@@ -43,6 +57,7 @@ export default function Profile({ user }) {
     })
       .then((resp) => resp.json())
       .then((data) => {
+        setEditedFlag({...editedFlag,image:true})
         setimagebody(data);
         console.log(data);
         setUrl(data.url);
@@ -63,7 +78,7 @@ export default function Profile({ user }) {
               <div>
                 <input
                   style={{ display: "none" }}
-                  id="postImg"
+                  id="postProfileImg"
                   type="file"
                   placeholder="image"
                   accept=".png, .jpg, .jpeg"
@@ -87,12 +102,12 @@ export default function Profile({ user }) {
                 <tr>
                   <td colSpan="2">              
                     <label
-                  htmlFor="postImg"
+                  htmlFor="postProfileImg"
                   className="button"
                   style={{fontSize:"13px"}}
                 >
                  <div className={`${uploading && "loaderIcon"}`}>
-                      {uploading?<i class="fa-solid fa-spinner"></i>:"Upload"}
+                      {uploading?<i className="fa-solid fa-spinner"></i>:"Upload"}
                       </div>
                 </label></td>
                 </tr>
@@ -114,33 +129,47 @@ export default function Profile({ user }) {
                       onClick={handleUpdateBio}
                     >
                       <div className={`${uploading && "loaderIcon"}`}>
-                      {uploading?<i class="fa-solid fa-spinner"></i>:"save"}
+                      {uploading?<i className="fa-solid fa-spinner"></i>:"save"}
                       </div>
                     </button>
                   </th>
                   <td>
                     <textarea
                       readOnly={location.pathname !== "/profile" && "true"}
-                      rows="5"
+                      rows="2"
                       placeholder="Write something....."
                       value={bio}
-                      onChange={(e) => setBio(e.target.value)}
+                      onChange={(e) => {
+                        setBio(e.target.value)
+                        setEditedFlag({...editedFlag,bio:true})
+                        console.log(editedFlag)
+                      }}
                     ></textarea>
                   </td>
                 </tr>
               </tbody>
             </table>
+            <div className="profileCardBottomBar">
             {location.pathname !== "/profile" && (
+                <div className="profileCardBottomBarItem">
               <button className="button" onClick={handleFollowUnFollow}>
                 {followState}
               </button>
+              </div>
             )}
+            <div className="profileCardBottomBarItem profileCardFollowing" onClick={()=>{setFollowing(!following)}}>
+              Following {user.following.length}
+            </div>
+            <div className="profileCardBottomBarItem profileCardFollowedBy" onClick={()=>{setFollowedBy(!followedBy)}}>
+              Followed by {user.followedBy.length}
+            </div>
+            </div>
           </div>
           {location.pathname === "/user" ||
             (location.pathname === "/profile" && (
               <>
-                <Users optOne={"Following"} users={users} />
-                <Users optOne={"Follwed by"} users={users} />
+                {following && <Users optOne={"Following"} users={users} />}
+                {followedBy && <Users optOne={"Followed by"} users={users} />}
               </>
             ))}
         </div>

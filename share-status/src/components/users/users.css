@@ -4,8 +4,8 @@
     background-color: #ffffff;
     box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
     margin: 20px auto;
-    padding: 20px;
-    border-radius: 20px;
+    padding: 10px;
+    border-radius: 10px;
 
   }
   .Users h3{
@@ -21,7 +21,7 @@
   .tableUserName{
     width: 100%;
     text-align: center;
-    text-align: left;
+    text-align: left; 
   }
   .tableUserEmail{
     color: var(--text-light-gray);
@@ -31,4 +31,26 @@
     background-color: var(--text-gray);
     color: white;
     padding: 10px;
+    border-radius: 2px;
   }
+  .Users td{
+    border-radius: 2px;
+  }
+
+  @media screen and (max-width: 680px) {
+    .userCardFollowAction{
+
+    }
+    .Users th, .Users tr,.Users td{
+      
+        font-size: 14px;
+        padding: 3px 0ps;
+      }
+      .tableHead{
+        padding: 5px 0px;
+      }
+  
+      .profileCard th,tr,td{
+          width: 20%;
+      }
+    }

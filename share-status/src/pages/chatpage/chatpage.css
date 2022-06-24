@@ -1,0 +1,58 @@
+.chatPage{
+    height: 92vh;
+    width: 100%;
+    display: flex;
+}
+.chatUserlist{
+    flex: 2.5;
+    width: 100%;
+    height: 100%;
+    background-color: var(--green);
+    border-right: 3px solid var(--divider);
+}
+.chatRightBox{
+    flex: 7.5;
+    width: 100%;
+    height: 100%;
+}
+.chatSideBar{
+    width: 100%;
+    height: 100%;
+
+}
+.userBox{
+    display: flex;
+    background-color: var(--bg-gray);
+    margin: 2px;
+    border-radius: 3px;
+}
+.userBoxLeft img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+/* @media screen and (max-width: 780px) */
+@media screen and (max-width: 1100px){
+    .chatUserlist{
+        flex:3
+    }
+    .chatRightBox{
+        flex:7
+    }
+    @media screen and (max-width: 600px){
+        .chatPage{
+            display: block;
+        }
+        .chatUserlist{
+            position: absolute;
+            border: none;
+            height: 92vh;
+            width: 0%;
+            overflow: hidden;
+            transition: .6s;
+        }
+        .toggleFullWidth{
+            width: 100%;
+        }
+    }
+}

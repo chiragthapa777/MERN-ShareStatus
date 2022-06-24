@@ -1,6 +1,40 @@
+.profileCard
+{
+
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 5px 7px 0 rgba(0,0,0,0.16);
+  margin-top: 105px;
+  
+}
+.profileCardBottomBar{
+  border-top: 2px solid var(--green);
+  /* border-radius: 5px; */
+  width: 100%;
+  display: flex;
+  padding: 7px 0px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.profileCardBottomBarItem{
+  font-weight: 600;
+}
+.profileCardBottomBarItem:hover{
+  color: var(--green);
+  cursor: pointer;
+}
+
+.profileCardBottomBarActive{
+  background-color: var(--green);
+}
+
 @media screen and (max-width: 680px) {
-    th,tr,td,.tableHead,.tableUserName{
-      font-size: 12px;
+  .profileCard th, .profileCard tr,.profileCard td,.profileCard .tableHead,.profileCard .tableUserName,.profileCard textarea{
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
+      font-size: 14px;
       margin: 0px;
       padding: 0px;
     }
@@ -10,6 +44,9 @@
 
     .profileCard th,tr,td{
         width: 20%;
+    }
+    .profileCardBottomBar{
+      font-size: 13px;
     }
   }
   .profileDetail td textarea{

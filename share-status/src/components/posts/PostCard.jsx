@@ -11,11 +11,13 @@ import "./posts.css"
 
 
 export default function PostCard({ post, setStatus }) {
+  console.log("yoo chai post haiiii",post)
   const auth=useSelector(state=>state.auth)
   const [comment, setComment] = useState("");
   const [openCmt, setOpenCmt] = useState(false);
   const dispatch = useDispatch();
-  const { _id, userName, status, date, likes, comments,image } = post;
+  const { _id, userName, status, date, likes, comments,image,user } = post;
+  console.log(post)
   const handleEdit = () => {
     setStatus({
       status,
@@ -47,7 +49,7 @@ export default function PostCard({ post, setStatus }) {
       <div className="PostCard">
         <div className="pcardTop">
           <div className="pcardUser">
-            <img src="images/blank-profile-picture-gb100cda33_1280.png" alt=""/>
+            <img src={user.image?(user.image.url!==""?user.image.url:"images/blank-profile-picture-gb100cda33_1280.png"):"images/blank-profile-picture-gb100cda33_1280.png"} alt=""/>
             <div className="pcardUserName">{userName}</div>
             </div>
           <div className="pcardDate">Posted : {Moment(date).fromNow()}</div>
@@ -89,7 +91,7 @@ export default function PostCard({ post, setStatus }) {
             </div>
           )}
         </div>
-        <div className={`${!openCmt && "hideComment"} commentSection`}>
+        <div className={`${!openCmt && "hideComment"} commentSection ${openCmt && "commentSectionBoarder"}`}>
           <div className="commentList">
             {comments.length > 0
               ? comments.map((comment) => {

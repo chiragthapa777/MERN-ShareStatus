@@ -67,7 +67,7 @@ const authReducer = (state = initAuth, action) => {
     case "REGISTER":
     case "LOGIN":
       toast(`${action.token.data.message}`, {
-        position: toast.POSITION.BOTTOM_RIGHT,
+        position: toast.POSITION.TOP_RIGHT,
       });
       return {
         name: nameFunc(),

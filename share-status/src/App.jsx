@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css"
 import { authUser } from './redux-store/actions/authAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from './redux-store/actions/userActions';
+import Chatpage from './pages/chatpage/Chatpage';
 
 
 
@@ -38,6 +39,7 @@ export default function App() {
                   <Route path="/profile" element={<ProfilePage />} />
                   <Route path="/user/:profileId" element={<VisitProfile />} />
                   <Route path="/user" element={<Userpage />} />
+                  <Route path="/chat/:userId" element={<Chatpage />} />
                 </Route>
               )
             }

@@ -6,7 +6,7 @@
     z-index: 100;
     position: sticky;
     top: 0px;
-    height: 60px;
+    height: 8vh;
     color: var(--text-light-gray);
     display: flex;
     background-color: #ffffff;
@@ -85,9 +85,9 @@
     .navRight{
         display: block;
     }
-    .button{
+    /* .button{
         margin-bottom:10px ;
-    }
+    } */
     #menu:checked ~ .navbar{
         height: 225px;
     }
